@@ -1,0 +1,4 @@
+API
+
+- Permitir adicionar preços de vendedores na cotação somente se a mesma estiver com status NEGOTIATION
+- 

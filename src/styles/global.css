@@ -1,0 +1,139 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+.ant-layout{
+  min-height: 100vh;
+}
+
+.trigger {
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .trigger:hover {
+    color: #1890ff;
+  }
+  
+  .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .site-layout .site-layout-background {
+    background: #fff;
+  }
+
+  .steps-content {
+    min-height: 200px;
+    margin-top: 16px;
+    background-color: #fafafa;
+    border: 1px dashed #e9e9e9;
+    border-radius: 2px;
+  }
+
+  
+@media(min-width: 721px){
+  .ant-steps-item{
+    width: 33.33%;
+  }
+}
+
+@media(min-width: 835px){
+  .bg-certificate{
+    background-size: contain !important;
+  }
+  .bg-certificate p{
+    width: 650px;
+  }
+  .validated{
+    width: 700px;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width: 720px){
+  .ant-steps-item{
+    width: 100%;
+    display: block;
+  }
+  .mobile-hidden{
+    display: none !important;
+  }
+}
+
+.step-content{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.payment-group-button{
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.payment-group-button .payment-button-item{
+  cursor: pointer;
+  border: 1px solid #eee;
+  background-color: #fff;
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.payment-group-button .payment-button-item div{
+  padding: 0 5px;
+}
+
+.payment-group-button .payment-button-item .payment-item-title{
+  display: block;
+}
+
+.bg-certificate{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.validated{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.validated-success{
+  background: #f6ffed;
+  border: 2px solid #60C92C;
+}
+
+.validated-error{
+  background: #FFF0F6;
+  border: 2px solid #EB2F96;
+}
+
+.validated h1{
+  line-height: 35px;
+  padding-left: 15px;
+}

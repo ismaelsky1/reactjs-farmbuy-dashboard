@@ -1,0 +1,40 @@
+image: node:latest
+
+cache:
+    paths:
+        - node_modules
+        - .yarn
+stages:
+    - build
+    - deploy
+build:
+    stage: build
+    script:
+        - yarn config set cache-folder .yarn
+        - yarn install --pure-lockfile --cache-folder .yarn
+        - yarn build -p
+    artifacts:
+        paths:
+            - ./build
+    only:
+        - master
+deploy:
+    stage: deploy
+    cache:
+        policy: pull
+        paths:
+            - node_modules/
+    variables:
+        GIT_STRATEGY: none
+        SSH_HOST: ubuntu@3.132.108.241
+    before_script:
+        - 'which ssh-agent || ( apt-get update -y & apt-get install openssh-client -y  )'
+        - eval $(ssh-agent -s)
+        - ssh-add <(echo "$SSH_KEY_PRODUCTION")
+        - mkdir -p ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+        - npm install -g wait-on@^5.2.1
+    script:
+        - scp -P22 -r ./build/* $SSH_HOST:/home/ubuntu/build
+        - ssh -p 22 $SSH_HOST "sudo rm -Rf /var/www/html/painel/* && sudo mv /home/ubuntu/build/* /var/www/html/painel/ && sudo chown -R www-data:www-data /var/www/html/painel/ && exit"
+        - wait-on --timeout 60000 https://painel.eduy.com.br
